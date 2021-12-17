@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,5 +25,11 @@ class MainActivity : AppCompatActivity() {
  */
         listOfTasks.add("Do laundry")
         listOfTasks.add("Boogie Board")
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        val adapter = TaskItemAdapter(listOfTasks)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 }
