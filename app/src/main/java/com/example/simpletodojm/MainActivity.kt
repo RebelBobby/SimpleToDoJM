@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -17,12 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
- /*       findViewById<Button>(R.id.button).setOnClickListener{
+/*
+        findViewById<Button>(R.id.button).setOnClickListener{
             Log.i("Joe", "User clicked a button")
 
         }
- */
+*/
         listOfTasks.add("This")
         listOfTasks.add("Took")
         listOfTasks.add("Too")
@@ -34,5 +35,19 @@ class MainActivity : AppCompatActivity() {
         val adapter = TaskItemAdapter(listOfTasks)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val inputTextField = findViewById<EditText>(R.id.addTaskField)
+
+        findViewById<Button>(R.id.button).setOnClickListener{
+
+            val userInputtedTask = inputTextField.text.toString()
+
+            listOfTasks.add(userInputtedTask)
+
+            adapter.notifyItemInserted(listOfTasks.size - 1)
+
+            inputTextField.setText(" ")
+        }
+
     }
 }
