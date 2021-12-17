@@ -23,8 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         }
  */
-        listOfTasks.add("Do laundry")
-        listOfTasks.add("Boogie Board")
+        listOfTasks.add("This")
+        listOfTasks.add("Took")
+        listOfTasks.add("Too")
+        listOfTasks.add("Long")
+        listOfTasks.add("JMatulewicz")
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
