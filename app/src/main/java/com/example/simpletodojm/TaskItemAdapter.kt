@@ -1,6 +1,5 @@
 package com.example.simpletodojm
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 /*
 A bridge that tells recy
  */
-class TaskItemAdapter(val listOfItems: List<String>,
-                      val longClickListener: View.OnLongClickListener) :
+class TaskItemAdapter(
+    val listOfItems: List<String>,
+    val longClickListener: OnLongClickListener
+) :
     RecyclerView.Adapter<TaskItemAdapter.ViewHolder>()  {
 
     interface OnLongClickListener{
@@ -48,7 +49,7 @@ class TaskItemAdapter(val listOfItems: List<String>,
         init {
             textView = itemView.findViewById(android.R.id.text1)
 
-            itemView.setOnClickListener {
+            itemView.setOnLongClickListener {
                 longClickListener.onItemLongClicked (adapterPosition)
 
                 true
