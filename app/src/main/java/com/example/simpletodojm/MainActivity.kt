@@ -6,14 +6,17 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.apache.commons.io.FileUtils
+import java.io.File
+import java.io.IOException
+import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
 
 
-    val listOfTasks = mutableListOf<String>()
+    var listOfTasks = mutableListOf<String>()
 
     lateinit var adapter: TaskItemAdapter
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +28,8 @@ class MainActivity : AppCompatActivity() {
                 listOfTasks.removeAt(position)
 
                 adapter.notifyDataSetChanged()
+
+                saveItems()
             }
 
         }
@@ -33,12 +38,14 @@ class MainActivity : AppCompatActivity() {
             Log.i("Joe", "User clicked a button")
 
         }
-*/
+
         listOfTasks.add("This")
         listOfTasks.add("Took")
         listOfTasks.add("Too")
         listOfTasks.add("Long")
         listOfTasks.add("JMatulewicz")
+*/
+        loadItems()
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
@@ -48,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         val inputTextField = findViewById<EditText>(R.id.addTaskField)
 
-        findViewById<Button>(R.id.button).setOnClickListener{
+        findViewById<Button>(R.id.button).setOnClickListener {
 
             val userInputtedTask = inputTextField.text.toString()
 
@@ -57,7 +64,31 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyItemInserted(listOfTasks.size - 1)
 
             inputTextField.setText(" ")
+
+            saveItems()
         }
 
     }
+
+    fun saveItems() {
+        try {
+            FileUtils.writeLines(getDataFile(), listOfTasks)
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+        }
+    }
+
+    fun getDataFile(): File {
+        return File(filesDir, "data.txt")
+    }
+
+    fun loadItems() {
+        try {
+            listOfTasks = FileUtils.readLines(getDataFile(), Charset.defaultCharset())
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+        }
+
+    }
+
 }
