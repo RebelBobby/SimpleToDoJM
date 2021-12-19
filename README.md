@@ -32,7 +32,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I got stuck twice with this project which took an hour+ to resolve. On one occation I forgot a curly brace and on another a spelling error. 
+I got stuck twice with this project which took me an hour or more to resolve. On one occasion I forgot a curly brace and on another, a spelling error. 
 
 ## License
 
